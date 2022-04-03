@@ -17,7 +17,7 @@ function SCE() {
 function App() {
   return (
     <div className="App">
-      {/* <SCE /> */}
+      <SCE />
     </div>
   );
 }
