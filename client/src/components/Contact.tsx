@@ -7,6 +7,7 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const Contact = () => {
         setName('');
         setEmail('');
         setMessage('');
-        setOpen(true);
+        setSuccess(true);
       })
       .catch((err) => console.log(err));
   };
@@ -33,37 +34,47 @@ const Contact = () => {
           <button className="float-right">
             <AiFillCaretDown onClick={() => setOpen(false)} />
           </button>
-          <form onSubmit={onSubmit}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="message">Message</label>
-            <textarea
-              name="message"
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="resize-none"
-            />
-            <button
-              type="submit"
-              className=" rounded-md bg-slate-400 p-2 block m-auto mt-2">
-              Send
-            </button>
-          </form>
+          {success ? (
+            <div className="text-center text-green-500">
+              <h1>Thank you for your message!</h1>
+              <p>We will get back to you as soon as possible.</p>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit}>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label htmlFor="message">Message</label>
+              <textarea
+                name="message"
+                id="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="resize-none"
+                required
+              />
+              <button
+                type="submit"
+                className=" rounded-md bg-slate-400 p-2 block m-auto mt-2">
+                Send
+              </button>
+            </form>
+          )}
         </>
       ) : (
         <button className="" onClick={() => setOpen(!open)}>

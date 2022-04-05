@@ -3,14 +3,16 @@ import { OrbitControls } from '@react-three/drei';
 
 function SCE() {
   return (
+    <div className="w-screen h-3/6 fixed">
     <Canvas>
       <ambientLight />
       <OrbitControls />
       <mesh>
-        <boxGeometry args={[1, 1, 1]} />
+        <boxGeometry args={[5, 5, 5]} />
         <meshStandardMaterial color="orange" />
       </mesh>
-    </Canvas>
+      </Canvas>
+    </div>
   );
 }
 

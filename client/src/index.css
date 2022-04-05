@@ -1,12 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  /* background: blue; */
-
+  font-family: 'Fira Code', monospace;
 }
 
-label{
-    display: block ;
+label {
+  display: block;
 }
