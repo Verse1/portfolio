@@ -3,7 +3,6 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import axios from 'axios';
 
 const Contact = () => {
-  console.log(process.env.REACT_APP_SERVER);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -12,22 +11,21 @@ const Contact = () => {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    // axios
-    //   .post('/api/contact', {
-    //     name,
-    //     email,
-    //     message,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     setName('');
-    //     setEmail('');
-    //     setMessage('');
-    //     setOpen(true);
-    //   })
-    //   .catch((err) => console.log(err));
+    axios
+      .post(import.meta.env.VITE_SERVER +'/contact', {
+        name,
+        email,
+        message,
+      })
+      .then((res) => {
+        console.log(res);
+        setName('');
+        setEmail('');
+        setMessage('');
+        setOpen(true);
+      })
+      .catch((err) => console.log(err));
 
-    console.log((await axios.get(process.env.REACT_APP_SERVER + '/')).data);
   };
 
   return (
