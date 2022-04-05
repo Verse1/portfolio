@@ -4,7 +4,6 @@ import contact from '../models/contact.model';
 module.exports = {
   post: (req: Request, res: Response) => {
     const { name, email, message } = req.body;
-    console.log("hey");
     
     const newContact = new contact({
       name,

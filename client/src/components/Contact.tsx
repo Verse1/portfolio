@@ -3,7 +3,6 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import axios from 'axios';
 
 const Contact = () => {
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -12,7 +11,7 @@ const Contact = () => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     axios
-      .post(import.meta.env.VITE_SERVER +'/contact', {
+      .post(import.meta.env.VITE_SERVER + '/contact', {
         name,
         email,
         message,
@@ -25,7 +24,6 @@ const Contact = () => {
         setOpen(true);
       })
       .catch((err) => console.log(err));
-
   };
 
   return (
@@ -37,17 +35,34 @@ const Contact = () => {
           </button>
           <form onSubmit={onSubmit}>
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label htmlFor="message">Message</label>
-            <textarea name="message" id="message" className="resize-none" />
+            <textarea
+              name="message"
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="resize-none"
+            />
             <button
               type="submit"
               className=" rounded-md bg-slate-400 p-2 block m-auto mt-2">
               Send
             </button>
-            <button onClick={onSubmit}>CLICK</button>
           </form>
         </>
       ) : (
