@@ -35,9 +35,8 @@ const Contact = () => {
             <AiFillCaretDown onClick={() => setOpen(false)} />
           </button>
           {success ? (
-            <div className="text-center text-green-500">
-              <h1>Thank you for your message!</h1>
-              <p>We will get back to you as soon as possible.</p>
+            <div className="text-center text-green-600">
+              <p>Thank you for your message!</p>
             </div>
           ) : (
             <form onSubmit={onSubmit}>
