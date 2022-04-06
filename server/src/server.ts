@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use('/api', require('./routes/routes'));
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/api', (req: Request, res: Response) => {
   res.send('Hello World!');
   console.log('Hello World!');
   
