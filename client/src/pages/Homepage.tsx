@@ -1,16 +1,30 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import {
+  MeshDistortMaterial,
+  OrbitControls,
+  Sphere,
+  Stars,
+} from '@react-three/drei';
+import { Suspense } from 'react';
 
 function SCE() {
   return (
-    <div className="w-screen h-3/6 fixed">
-    <Canvas>
-      <ambientLight />
-      <OrbitControls />
-      <mesh>
-        <boxGeometry args={[5, 5, 5]} />
-        <meshStandardMaterial color="orange" />
-      </mesh>
+    <div className="w-screen h-screen fixed">
+      <Canvas>
+        <ambientLight />
+        <directionalLight position={[10, 10, 10]} intensity={1} />
+        <OrbitControls enableZoom={false} />
+        <Stars />
+        <Suspense fallback={null}>
+          <Sphere visible args={[1, 32, 32]}>
+            <MeshDistortMaterial
+              color={'#6c2f94'}
+              roughness={0}
+              distort={0.6}
+              speed={2}
+            />
+          </Sphere>
+        </Suspense>
       </Canvas>
     </div>
   );
