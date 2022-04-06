@@ -12,7 +12,7 @@ const Contact = () => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     axios
-      .post(import.meta.env.VITE_SERVER + '/contact', {
+      .post('/api/contact', {
         name,
         email,
         message,

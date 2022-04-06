@@ -14,7 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.use('/api', require('./src/routes/routes'));
+app.use('/api', require('./routes/routes'));
+
+app.get('/api', (req: Request, res: Response) => {
+  res.send('Hello World!');
+  console.log('Hello World!');
+  
+});
 
 const uri = process.env.MONGO_URL;
 
