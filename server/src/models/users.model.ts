@@ -6,6 +6,7 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -16,12 +17,23 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+
+    approved: {
+      type: Boolean,
+      default: false,
+    },
+
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const contact = monogoose.model('User', userSchema);
+const users = monogoose.model('User', userSchema);
 
-export default contact;
+export default users;
