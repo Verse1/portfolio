@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import users from '../models/contact.model';
+import users from '../models/users.model';
 import bcrypt from 'bcrypt';
 
 module.exports = {
@@ -51,7 +51,10 @@ module.exports = {
       password,
     });
 
+
+
     bcrypt.genSalt(10, (err, salt) => {
+
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
         newUser.password = hash;
