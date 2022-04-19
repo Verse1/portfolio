@@ -8,7 +8,6 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
     <App />
     <Contact />
   </React.StrictMode>,

@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <div className="bg-cyan-200 text-2xl p-7 ">
       <div className="flex gap-10 justify-between">
-        <a href="/" className="hover:text-gray-600 font-semibold text-2xl">
+        <Link to="/" className="hover:text-gray-600 font-semibold text-2xl">
           Nawaf
-        </a>
+        </Link>
         <div className="gap-12 flex text-purple-500">
-          <a href="/contact" className="hover:text-violet-400">
+          <Link to="/contact" className="hover:text-violet-400">
             Contact
-          </a>
-          <a href="/login" className="hover:text-violet-400">
+          </Link>
+          <Link to="/login" className="hover:text-violet-400">
             Login
-          </a>
-          <a href="/register" className="hover:text-violet-400">
+          </Link>
+          <Link to="/register" className="hover:text-violet-400">
             Sign Up
-          </a>
+          </Link>
         </div>
       </div>
     </div>
