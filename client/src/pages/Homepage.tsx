@@ -41,7 +41,7 @@ function SCE() {
   );
 }
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <SCE />
@@ -49,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
