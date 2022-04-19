@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-
-
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -11,7 +9,9 @@ const Register = () => {
   const [error, setError] = useState('');
   return (
     <div className="grid place-items-center">
-      <div className="text-white text-5xl grid place-items-center mt-60 mb-10">Register</div>
+      <div className="text-white text-5xl grid place-items-center mt-60 mb-10">
+        Register
+      </div>
 
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 grid place-items-center">
         <p className="text-red-600 my-3">{error}</p>
@@ -92,33 +92,31 @@ const Register = () => {
       setError('Passwords do not match');
       return;
     }
-    if(password.length < 8){
+    if (password.length < 8) {
       setPassword('');
       setConfirm('');
       setError('Password must be at least 8 characters long');
       return;
     }
-    if(username.length < 3){
+    if (username.length < 3) {
       setUsername('');
       setError('Username must be at least 3 characters long');
       return;
     }
 
-    const res = await axios.post('/api/register', {
-      username,
-      email,
-      password,
-    });
-    if (res.data.error) {
-      setError(res.data.error);
+    try {
+      const res = await axios.post('/api/register', {
+        username,
+        email,
+        password,
+      });
+    } catch (err: any) {
+      setError('Username or email already exists');
       return;
     }
-    else {
-      window.location.href = '/login';
-    }
+
+    window.location.href = '/login';
   }
 };
-
-
 
 export default Register;
