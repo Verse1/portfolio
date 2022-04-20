@@ -19,7 +19,6 @@ app.use('/api', require('./routes/routes'));
 app.get('/api', (req: Request, res: Response) => {
   res.send('Hello World!');
   console.log('Hello World!');
-  
 });
 
 const uri = process.env.MONGO_URL;
@@ -30,5 +29,7 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-app.listen(port);
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+});
 module.exports = app;
