@@ -15,6 +15,14 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
+        <Route
+          path="*"
+          element={
+            <div className="text-7xl text-center mt-9 text-white">
+              I think you're lost :(
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
