@@ -13,27 +13,23 @@ module.exports = {
             message: 'Login failed',
           });
         }
-        bcrypt.compare(
-          password,
-          user.password,
-          (err, result: boolean) => {
-            if (err) {
-              return res.status(500).json({
-                message: 'Error comparing passwords',
-                error: err,
-              });
-            }
-            if (result) {
-              return res.status(200).json({
-                message: 'Login successful',
-                user,
-              });
-            }
-            return res.status(401).json({
-              message: 'Login failed',
+        bcrypt.compare(password, user.password, (err, result: boolean) => {
+          if (err) {
+            return res.status(500).json({
+              message: 'Error comparing passwords',
+              error: err,
             });
           }
-        );
+          if (result) {
+            return res.status(200).json({
+              message: 'Login successful',
+              user,
+            });
+          }
+          return res.status(401).json({
+            message: 'Login failed',
+          });
+        });
       })
       .catch((err: Error) => {
         return res.status(500).json({
@@ -51,10 +47,7 @@ module.exports = {
       password,
     });
 
-
-
     bcrypt.genSalt(10, (err, salt) => {
-
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
         newUser.password = hash;
