@@ -15,7 +15,7 @@ module.exports = {
   },
   addSkill: async (req: Request, res: Response) => {
     const skill = new skills({
-      skill: req.body.skill,
+      name: req.body.skill,
     });
     try {
       const newSkill = await skill.save();
