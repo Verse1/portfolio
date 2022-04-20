@@ -6,9 +6,7 @@ const AddSkill = (props: any) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   return (
-    <div className="grid place-items-center">
-      <h1 className="text-white text-4xl my-11">Admin Dashboard</h1>
-
+    <div>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <p className="text-center text-lg">Add skills</p>
         <p className="text-red-600 my-3">{error}</p>

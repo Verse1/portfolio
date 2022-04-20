@@ -18,12 +18,21 @@ const Admin = () => {
   }, []);
 
   return (
-    <>
-      <AddSkill state={skills} stateChanger={setSkills} />
-      {skills.map((skill) => (
-        <Skill key={skill._id} name={skill.name} />
-      ))}
-    </>
+    <div className="w-screen h-screen fixed">
+      <div className="grid place-items-center">
+        <h1 className="text-white text-4xl my-11">Admin Dashboard</h1>
+
+        <AddSkill state={skills} stateChanger={setSkills} />
+        {skills.map((skill) => (
+          <Skill
+            key={skill._id}
+            skill={skill}
+            state={skills}
+            stateChanger={setSkills}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
