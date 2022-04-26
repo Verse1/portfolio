@@ -9,9 +9,6 @@ const Navbar = () => {
           Nawaf
         </Link>
         <div className="gap-12 flex text-purple-500">
-          <Link to="/contact" className="hover:text-violet-400">
-            Contact
-          </Link>
           <Link to="/login" className="hover:text-violet-400">
             Login
           </Link>
