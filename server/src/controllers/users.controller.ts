@@ -21,6 +21,9 @@ module.exports = {
             });
           }
           if (result) {
+            req.session.user = user;
+            console.log(req.session.user);
+            
             return res.status(200).json({
               message: 'Login successful',
               user,

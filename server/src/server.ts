@@ -4,6 +4,12 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 
+declare module 'express-session' {
+  interface SessionData {
+    user: string;
+  }
+}
+
 dotenv.config();
 
 const mongoose = require('mongoose');
