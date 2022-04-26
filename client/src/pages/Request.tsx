@@ -48,7 +48,7 @@ const Request = () => {
             className="mx-2"
           />
           Movie
-          <label htmlFor="title" className="mb-4 text-lg">
+          <label htmlFor="title" className="my-4 text-lg">
             Title
                   </label>
                   
