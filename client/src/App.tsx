@@ -4,6 +4,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import Admin from './pages/Admin';
+import Request from './pages/Request';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/request" element={<Request />} />
         <Route
           path="*"
           element={
