@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 
 dotenv.config();
 
@@ -12,7 +14,24 @@ const port = process.env.PORT || 4000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET ?? 'secret',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 60 * 60 * 1000,
+    },
+  })
+);
 
 app.use('/api', require('./routes/routes'));
 
