@@ -3,10 +3,20 @@ import React, { useState } from 'react';
 const Request = () => {
   const [type, setType] = useState('show');
   const [title, setTitle] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    console.log(title);
+    setTitle('');
+    setType('show');
+    setSuccessMessage('Your request has been sent!');
+  }
 
   return (
     <div>
       <h1>Request</h1>
+      <p className="text-purple-400">{successMessage}</p>
       <form>
         <label htmlFor="type">Type</label>
         <input
