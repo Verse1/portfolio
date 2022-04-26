@@ -4,13 +4,21 @@ const Request = () => {
   const [type, setType] = useState('show');
   const [title, setTitle] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleSubmit(e: any) {
     e.preventDefault();
+
+    if (title.length === 0) {
+      setErrorMessage('Please enter a title :)');
+      return;
+    }
+
     console.log(title);
     setTitle('');
     setType('show');
     setSuccessMessage('Your request has been sent!');
+    setErrorMessage('');
   }
 
   return (
@@ -40,9 +48,12 @@ const Request = () => {
             className="mx-2"
           />
           Movie
-          <label htmlFor="title" className="my-4 text-lg">
+          <label htmlFor="title" className="mb-4 text-lg">
             Title
-          </label>
+                  </label>
+                  
+        <p className="text-black mb-2">{errorMessage}</p>
+
           <input
             type="text"
             name="title"
