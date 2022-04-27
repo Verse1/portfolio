@@ -19,6 +19,8 @@ const App = () => {
     axios
       .get('/api/auth')
       .then((res) => {
+        console.log(res.data);
+
         setAuth(res.data.auth);
         setAdmin(res.data.admin);
         setApproved(res.data.approved);

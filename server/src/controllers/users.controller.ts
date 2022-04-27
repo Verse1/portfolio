@@ -22,7 +22,6 @@ module.exports = {
           }
           if (result) {
             req.session.user = user;
-            console.log(req.session.user);
 
             return res.status(200).json({
               message: 'Login successful',
@@ -71,14 +70,24 @@ module.exports = {
     });
   },
   auth: (req: Request, res: Response) => {
+    console.log(req.session);
+
+    let user: any;
+
     if (req.session.user) {
-      console.log(req.session.user);
+      try {
+        user = JSON.parse(req.session.user);
+      } catch (err) {
+        user = req.session.user;
+      }
+
+      console.log(user);
 
       return res.status(200).json({
         message: 'User authenticated',
         auth: true,
-        admin: JSON.parse(req.session.user).role === 'admin',
-        approved: JSON.parse(req.session.user).approved,
+        admin: user.role === 'admin',
+        approved: user.approved,
       });
     }
     return res.status(200).json({
