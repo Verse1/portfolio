@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props: any) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -63,10 +63,14 @@ const Login = () => {
         username,
         password,
       });
+      props.authState(res.data.auth);
+      props.adminState(res.data.admin);
+      props.approvedState(res.data.role);
     } catch (err: any) {
-      setError("Username or password is incorrect");
+      setError('Username or password is incorrect');
       return;
     }
+
     navigate('/');
   }
 };

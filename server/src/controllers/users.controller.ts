@@ -25,7 +25,9 @@ module.exports = {
 
             return res.status(200).json({
               message: 'Login successful',
-              user,
+              auth: true,
+              admin: user.role === 'admin',
+              approved: user.approved,
             });
           }
           return res.status(401).json({
@@ -56,6 +58,7 @@ module.exports = {
         newUser
           .save()
           .then(() => {
+            req.session.user = newUser;
             res.status(200).json({
               message: 'User saved successfully',
             });
