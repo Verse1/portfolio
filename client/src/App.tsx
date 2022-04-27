@@ -12,8 +12,8 @@ axios.defaults.withCredentials = true;
 
 const App = () => {
   const [auth, setAuth] = useState<boolean>(false);
-  const [admin, setAdmin] = useState(false);
-  const [approved, setApproved] = useState(false);
+  const [admin, setAdmin] = useState<boolean>(false);
+  const [approved, setApproved] = useState<boolean>(false);
 
   useEffect(() => {
     axios
@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navbar auth={auth} />
+      <Navbar auth={auth} admin={admin} approved={approved} />
 
       <Routes>
         <Route path="/" element={<Homepage />} />
