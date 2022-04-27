@@ -1,15 +1,34 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Homepage from './pages/Homepage';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import Admin from './pages/Admin';
 import Request from './pages/Request';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const App = () => {
+  const [auth, setAuth] = useState<boolean>(false);
+  const [admin, setAdmin] = useState(false);
+  const [approved, setApproved] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get('/api/auth')
+      .then((res) => {
+        setAuth(res.data.auth);
+        setAdmin(res.data.admin);
+        setApproved(res.data.approved);
+      })
+      .catch((err) => {});
+  }, []);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar auth={auth} />
 
       <Routes>
         <Route path="/" element={<Homepage />} />

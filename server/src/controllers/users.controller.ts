@@ -23,7 +23,7 @@ module.exports = {
           if (result) {
             req.session.user = user;
             console.log(req.session.user);
-            
+
             return res.status(200).json({
               message: 'Login successful',
               user,
@@ -68,6 +68,24 @@ module.exports = {
             });
           });
       });
+    });
+  },
+  auth: (req: Request, res: Response) => {
+    if (req.session.user) {
+      console.log(req.session.user);
+
+      return res.status(200).json({
+        message: 'User authenticated',
+        auth: true,
+        admin: JSON.parse(req.session.user).role === 'admin',
+        approved: JSON.parse(req.session.user).approved,
+      });
+    }
+    return res.status(200).json({
+      message: 'User not authenticated',
+      auth: false,
+      admin: false,
+      approved: false,
     });
   },
 };

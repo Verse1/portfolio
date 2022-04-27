@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 declare module 'express-session' {
   interface SessionData {
@@ -28,6 +29,9 @@ app.use(
 );
 app.use(cookieParser());
 
+const uri = process.env.MONGO_URL;
+
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET ?? 'secret',
@@ -36,6 +40,9 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 1000,
     },
+    store: MongoStore.create({
+      mongoUrl: uri ?? 'mongodb://localhost:27017/',
+    }),
   })
 );
 
@@ -46,7 +53,6 @@ app.get('/api', (req: Request, res: Response) => {
   console.log('Hello World!');
 });
 
-const uri = process.env.MONGO_URL;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
