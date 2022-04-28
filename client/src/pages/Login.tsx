@@ -65,7 +65,7 @@ const Login = (props: any) => {
       });
       props.authState(res.data.auth);
       props.adminState(res.data.admin);
-      props.approvedState(res.data.role);
+      props.approvedState(res.data.approved);
     } catch (err: any) {
       setError('Username or password is incorrect');
       return;
