@@ -73,8 +73,6 @@ module.exports = {
     });
   },
   auth: (req: Request, res: Response) => {
-    console.log(req.session);
-
     let user: any;
 
     if (req.session.user) {
@@ -83,8 +81,6 @@ module.exports = {
       } catch (err) {
         user = req.session.user;
       }
-
-      console.log(user);
 
       return res.status(200).json({
         message: 'User authenticated',
