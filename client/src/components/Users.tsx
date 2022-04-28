@@ -15,7 +15,7 @@ const Users = (props: any) => {
       ) : (
         <div className="flex justify-center">
           <p className="text-white">Not Approved</p>
-          <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 mx-3 rounded focus:outline-none focus:shadow-outline">
+          <button className="bg-green-500 hover:bg-green-700 text-white font-bold px-2 mx-3 rounded focus:outline-none focus:shadow-outline" onClick={handleApprove}>
             <FcApproval />
           </button>
         </div>
