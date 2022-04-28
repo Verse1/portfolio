@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+const mongoose = require('mongoose');
 
 declare module 'express-session' {
   interface SessionData {
@@ -12,8 +13,6 @@ declare module 'express-session' {
 }
 
 dotenv.config();
-
-const mongoose = require('mongoose');
 
 const app: Express = express();
 
@@ -39,6 +38,7 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 1000,
     },
+    store: MongoStore.create({ mongoUrl: uri }),
   })
 );
 
