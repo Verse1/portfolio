@@ -96,4 +96,12 @@ module.exports = {
       approved: false,
     });
   },
+
+  getUsers: async (req: Request, res: Response) => {
+    const fetchedUsers = await users.find({}, { email: 1, username: 1, role: 1, approved: 1 });
+    return res.status(200).json({
+      message: 'Users retrieved successfully',
+      fetchedUsers,
+    });
+  },
 };
