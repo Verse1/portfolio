@@ -34,10 +34,24 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login authState={setAuth} adminState={setAdmin} approvedState={setApproved} />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/request" element={<Request />} />
+        {!auth && (
+          <>
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  authState={setAuth}
+                  adminState={setAdmin}
+                  approvedState={setApproved}
+                />
+              }
+            />
+          </>
+        )}
+        {admin && <Route path="/admin" element={<Admin />} />}
+        {auth && <Route path="/request" element={<Request />} />}
+
         <Route
           path="*"
           element={
