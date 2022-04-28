@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddSkill from '../components/AddSkill';
 import Skill from '../components/Skill';
+import Users from '../components/Users';
 
 const Admin = () => {
   const [skills, setSkills] = useState<any[]>([]);
@@ -11,6 +12,7 @@ const Admin = () => {
   const [usersTab, setUsersTab] = useState<boolean>(false);
 
   const getSkills = () => {
+    setUsersTab(false);
     setSkillsTab(true);
     axios
       .get('/api/admin/skills')
@@ -24,18 +26,18 @@ const Admin = () => {
   };
 
   const getUsers = () => {
+    setSkillsTab(false);
     setUsersTab(true);
     axios
       .get('/api/admin/users')
       .then((res) => {
-        setUsers(res.data);
+        setUsers(res.data.fetchedUsers);
       })
 
       .catch((err) => {
         console.log(err);
       });
   };
-
 
   return (
     <div className="w-screen h-screen fixed">
@@ -65,6 +67,26 @@ const Admin = () => {
                 state={skills}
                 stateChanger={setSkills}
               />
+            ))}
+          </div>
+        )}
+
+        {usersTab && (
+          <div className="grid grid-cols-1 gap-4 mt-6">
+            {users.map((user) => (
+              <Users
+                key={user._id}
+                user={user}
+                stateChange={setUsers}
+                state={users}
+              />
+
+              // <div className="bg-white rounded-lg p-6" key={user._id}>
+              //   <h2 className="text-2xl">{user.name}</h2>
+              //   <p className="text-gray-600">{user.email}</p>
+              //   <p className="text-gray-600">{user.role}</p>
+              //   <p className="text-gray-600">{user.approved}</p>
+              // </div>
             ))}
           </div>
         )}
