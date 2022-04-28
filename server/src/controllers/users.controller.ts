@@ -98,10 +98,22 @@ module.exports = {
   },
 
   getUsers: async (req: Request, res: Response) => {
-    const fetchedUsers = await users.find({}, { email: 1, username: 1, role: 1, approved: 1 });
+    const fetchedUsers = await users.find(
+      {},
+      { email: 1, username: 1, role: 1, approved: 1 }
+    );
     return res.status(200).json({
       message: 'Users retrieved successfully',
       fetchedUsers,
+    });
+  },
+
+  deleteUser: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const deletedUser = await users.findByIdAndDelete(id);
+    return res.status(200).json({
+      message: 'User deleted successfully',
+      deletedUser,
     });
   },
 };
