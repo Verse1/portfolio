@@ -98,32 +98,51 @@ module.exports = {
   },
 
   getUsers: async (req: Request, res: Response) => {
-    const fetchedUsers = await users.find(
-      {},
-      { email: 1, username: 1, role: 1, approved: 1 }
-    );
-    return res.status(200).json({
-      message: 'Users retrieved successfully',
-      fetchedUsers,
-    });
+    try {
+      const fetchedUsers = await users.find(
+        {},
+        { email: 1, username: 1, role: 1, approved: 1 }
+      );
+      return res.status(200).json({
+        message: 'Users retrieved successfully',
+        fetchedUsers,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Error retrieving users',
+        error: err,
+      });
+    }
   },
 
   deleteUser: async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const deletedUser = await users.findByIdAndDelete(id);
-    return res.status(200).json({
-      message: 'User deleted successfully',
-      deletedUser,
-    });
+    try {
+      const { id } = req.params;
+      await users.findByIdAndDelete(id);
+      return res.status(200).json({
+        message: 'User deleted successfully',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Error deleting user',
+        error: err,
+      });
+    }
   },
   approveUser: async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const approvedUser = await users.findByIdAndUpdate(id, {
-      approved: true,
-    });
-    return res.status(200).json({
-      message: 'User approved successfully',
-      approvedUser,
-    });
+    try {
+      const { id } = req.params;
+      await users.findByIdAndUpdate(id, {
+        approved: true,
+      });
+      return res.status(200).json({
+        message: 'User approved successfully',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Error approving user',
+        error: err,
+      });
+    }
   },
 };
