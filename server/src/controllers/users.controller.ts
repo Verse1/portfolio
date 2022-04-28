@@ -116,4 +116,14 @@ module.exports = {
       deletedUser,
     });
   },
+  approveUser: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const approvedUser = await users.findByIdAndUpdate(id, {
+      approved: true,
+    });
+    return res.status(200).json({
+      message: 'User approved successfully',
+      approvedUser,
+    });
+  },
 };

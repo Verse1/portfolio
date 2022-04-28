@@ -9,5 +9,6 @@ adminRouter.put('/skills/:id', skillController.updateSkill);
 
 adminRouter.get('/users', userControllerr.getUsers);
 adminRouter.delete('/users/:id', userControllerr.deleteUser);
+adminRouter.put('/users/:id', userControllerr.approveUser);
 
 module.exports = adminRouter;
