@@ -9,15 +9,15 @@ const Navbar = (props: any) => {
           Nawaf
         </Link>
 
-        <div className="gap-12 flex text-purple-500">
+        <div className="gap-12 flex text-purple-600">
           {!props.auth && (
             <>
-              <Link to="/login" className="hover:text-violet-400">
-                Login
+              <Link to="/login" className="hover:text-violet-500">
+                Nawaf's Backdoor Login
               </Link>
-              <Link to="/register" className="hover:text-violet-400">
+              {/* <Link to="/register" className="hover:text-violet-400">
                 Sign Up
-              </Link>
+              </Link> */}
             </>
           )}
           {props.admin && (
