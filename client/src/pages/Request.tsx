@@ -11,6 +11,7 @@ const Request = () => {
 
     if (title.length === 0) {
       setErrorMessage('Please enter a title :)');
+      setSuccessMessage('');
       return;
     }
 
@@ -50,16 +51,14 @@ const Request = () => {
           Movie
           <label htmlFor="title" className="my-4 text-lg">
             Title
-                  </label>
-                  
-        <p className="text-black mb-2">{errorMessage}</p>
-
+          </label>
+          <p className="text-black mb-2">{errorMessage}</p>
           <input
             type="text"
             name="title"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
-            className="rounded-md"
+            className="rounded-md text-black"
           />
           <button
             type="submit"
