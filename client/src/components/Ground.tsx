@@ -4,9 +4,9 @@ import { TextureLoader } from 'three';
 
 const Ground = () => {
   const [roughness, normal, color] = useLoader(TextureLoader, [
-    '../../textures/wood_rough.jpg',
-    '../../textures/wood_normal.jpg',
-    '../../textures/wood_color.jpg',
+    '../../textures/Ground/wood_rough.jpg',
+    '../../textures/Ground/wood_normal.jpg',
+    '../../textures/Ground/wood_color.jpg',
   ]);
 
   return (
