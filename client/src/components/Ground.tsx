@@ -3,10 +3,11 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 
 const Ground = () => {
-  const [roughness, normal, color] = useLoader(TextureLoader, [
+  const [roughness, normal, color, displacement] = useLoader(TextureLoader, [
     '../../textures/Ground/wood_rough.jpg',
     '../../textures/Ground/wood_normal.jpg',
     '../../textures/Ground/wood_color.jpg',
+    '../../textures/Ground/wood_displacement.jpg',
   ]);
 
   return (
@@ -19,6 +20,7 @@ const Ground = () => {
         normalMap={normal}
         map={color}
         roughnessMap={roughness}
+        displacementMap={displacement}
       />
     </mesh>
   );
